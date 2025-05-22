@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mango Disease Detection</title>
+    <link rel="stylesheet" href="{{ url_for('feature3.static', filename='css/feature3.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Mango Leaf Disease Detection</h1>
+        <form id="uploadForm" action="{{ url_for('feature3.mango_predict') }}" method="POST" enctype="multipart/form-data">
+            <label for="image" class="custom-file-upload">
+                Choose Image
+            </label>
+            <input type="file" id="image" name="image" accept="image/*" required />
+            <button type="submit" id="submitBtn">Predict Disease</button>
+        </form>
+        <div id="preview-container" style="display:none;">
+            <h3>Image Preview:</h3>
+            <img id="preview" src="#" alt="Image Preview" />
+        </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="flash-message">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <script src="{{ url_for('feature3.static', filename='js/feature3.js') }}"></script>
+</body>
+</html>

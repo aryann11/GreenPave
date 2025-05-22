@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Crop Recommendation System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('feature2.static', filename='css/feature2.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header text-center">
+                <h2 class="mb-0"><i class="fas fa-seedling me-2"></i> Smart Crop Recommendation</h2>
+                <p class="mb-0 mt-2" style="opacity: 0.9;">Optimize your farm yield with AI-powered insights</p>
+            </div>
+            
+            <div class="card-body">
+                <form id="predictionForm">
+                    <div class="section-title">
+                        <i class="fas fa-flask"></i> Soil Nutrient Composition
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="N" class="form-label">Nitrogen</label>
+                            <div class="input-group">
+                                <i class="fas fa-vial input-icon"></i>
+                                <input type="number" class="form-control icon-input" id="N" required 
+                                    min="0" max="140" placeholder="Enter value">
+                                <span class="input-unit">mg/kg</span>
+                            </div>
+                            <input type="range" class="range-slider" id="N-slider" min="0" max="140" value="70">
+                            <div class="param-range">
+                                <span class="param-range-min">0 mg/kg</span>
+                                <span id="N-value" class="range-value">70 mg/kg</span>
+                                <span class="param-range-max">140 mg/kg</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="P" class="form-label">Phosphorus</label>
+                            <div class="input-group">
+                                <i class="fas fa-vial input-icon"></i>
+                                <input type="number" class="form-control icon-input" id="P" required 
+                                    min="5" max="145" placeholder="Enter value">
+                                <span class="input-unit">mg/kg</span>
+                            </div>
+                            <input type="range" class="range-slider" id="P-slider" min="5" max="145" value="75">
+                            <div class="param-range">
+                                <span class="param-range-min">5 mg/kg</span>
+                                <span id="P-value" class="range-value">75 mg/kg</span>
+                                <span class="param-range-max">145 mg/kg</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="K" class="form-label">Potassium</label>
+                            <div class="input-group">
+                                <i class="fas fa-vial input-icon"></i>
+                                <input type="number" class="form-control icon-input" id="K" required 
+                                    min="5" max="205" placeholder="Enter value">
+                                <span class="input-unit">mg/kg</span>
+                            </div>
+                            <input type="range" class="range-slider" id="K-slider" min="5" max="205" value="105">
+                            <div class="param-range">
+                                <span class="param-range-min">5 mg/kg</span>
+                                <span id="K-value" class="range-value">105 mg/kg</span>
+                                <span class="param-range-max">205 mg/kg</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+                    
+                    <div class="section-title">
+                        <i class="fas fa-cloud-sun"></i> Climate Conditions
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="temperature" class="form-label">Temperature</label>
+                            <div class="input-group">
+                                <i class="fas fa-temperature-high input-icon"></i>
+                                <input type="number" class="form-control icon-input" id="temperature" required 
+                                    min="8.8" max="43.7" step="0.1" placeholder="Enter value">
+                                <span class="input-unit">°C</span>
+                            </div>
+                            <input type="range" class="range-slider" id="temperature-slider" min="8.8" max="43.7" step="0.1" value="25">
+                            <div class="param-range">
+                                <span class="param-range-min">8.8 °C</span>
+                                <span id="temperature-value" class="range-value">25.0 °C</span>
+                                <span class="param-range-max">43.7 °C</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="humidity" class="form-label">Humidity</label>
+                            <div class="input-group">
+                                <i class="fas fa-tint input-icon"></i>
+                                <input type="number" class="form-control icon-input" id="humidity" required 
+                                    min="14.3" max="99.9" step="0.1" placeholder="Enter value">
+                                <span class="input-unit">%</span>
+                            </div>
+                            <input type="range" class="range-slider" id="humidity-slider" min="14.3" max="99.9" step="0.1" value="65">
+                            <div class="param-range">
+                                <span class="param-range-min">14.3 %</span>
+                                <span id="humidity-value" class="range-value">65.0 %</span>
+                                <span class="param-range-max">99.9 %</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="ph" class="form-label">Soil pH</label>
+                            <div class="input-group">
+                                <i class="fas fa-flask input-icon"></i>
+                                <input type="number" class="form-control icon-input" id="ph" required 
+                                    min="3.5" max="10" step="0.1" placeholder="Enter value">
+                            </div>
+                            <input type="range" class="range-slider" id="ph-slider" min="3.5" max="10" step="0.1" value="6.5">
+                            <div class="param-range">
+                                <span class="param-range-min">3.5 (Acidic)</span>
+                                <span id="ph-value" class="range-value">6.5</span>
+                                <span class="param-range-max">10 (Alkaline)</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="rainfall" class="form-label">Rainfall</label>
+                            <div class="input-group">
+                                <i class="fas fa-cloud-rain input-icon"></i>
+                                <input type="number" class="form-control icon-input" id="rainfall" required 
+                                    min="20.2" max="298.6" step="0.1" placeholder="Enter value">
+                                <span class="input-unit">mm</span>
+                            </div>
+                            <input type="range" class="range-slider" id="rainfall-slider" min="20.2" max="298.6" step="0.1" value="100">
+                            <div class="param-range">
+                                <span class="param-range-min">20.2 mm</span>
+                                <span id="rainfall-value" class="range-value">100.0 mm</span>
+                                <span class="param-range-max">298.6 mm</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="button-text">Get Crop Recommendation</span>
+                            <span class="button-icon"><i class="fas fa-leaf"></i></span>
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="loading">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Analyzing soil and climate conditions...</p>
+                </div>
+
+                <div class="result-card">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Recommended Crop</h4>
+                        <p class="prediction-text" id="prediction"></p>
+                        <div class="mt-3">
+                            <i class="fas fa-info-circle me-1" style="color: var(--primary-color);"></i>
+                            <span class="text-muted" style="font-size: 0.9rem;">Based on the provided soil parameters and climate conditions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p>Smart Agriculture Solutions © 2025</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('feature2.static', filename='js/feature2.js') }}"></script>
+</body>
+</html>

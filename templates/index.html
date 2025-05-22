@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <h1>Urban Agriculture Toolkit</h1>
+    <p>Your comprehensive solution for urban farming needs</p>
+</div>
+
+<div class="features-grid">
+    <a href="{{ url_for('feature1.home') }}" class="feature-card">
+        <h2>Agriculture Chat</h2>
+        <p>Get answers to your urban agriculture questions</p>
+    </a>
+
+    <a href="{{ url_for('feature2.home') }}" class="feature-card">
+        <h2>Crop Recommender</h2>
+        <p>Find the best crops for your soil conditions</p>
+    </a>
+
+    <a href="{{ url_for('feature3.index') }}" class="feature-card">
+        <h2>Disease Detector</h2>
+        <p>Identify plant diseases from images</p>
+    </a>
+
+    <a href="{{ url_for('feature4.index') }}" class="feature-card">
+        <h2>Nursery Finder</h2>
+        <p>Locate plant nurseries near you</p>
+    </a>
+</div>
+{% endblock %}

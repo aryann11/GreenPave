@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('feature3.static', filename='css/feature3.css') }}">
+</head>
+<body>
+    <div class="container result-container">
+        <h1>Prediction Result</h1>
+        
+        {% if error %}
+            <div class="error-msg">
+                <p>Error: {{ error }}</p>
+            </div>
+        {% else %}
+            <div class="image-preview">
+                <img src="{{ url_for('feature3.static', filename=image_url) }}" alt="Uploaded Image" />
+
+            </div>
+            <div class="result-text">
+                <h2>Disease: <span class="disease-name">{{ disease }}</span></h2>
+                <p>Confidence: <strong>{{ confidence }}%</strong></p>
+
+                <h3>Probabilities:</h3>
+                <ul class="prob-list">
+                    {% for disease_name, prob in probabilities.items() %}
+                    <li>
+                        {{ disease_name }}: {{ (prob * 100) | round(2) }}%
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        
+        <a href="{{ url_for('feature3.index') }}" class="btn-back">Try Another Image</a>
+        
+    </div>
+</body>
+</html>

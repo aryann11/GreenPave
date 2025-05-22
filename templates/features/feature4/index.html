@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Nursery Finder</title>
+    <link rel="stylesheet" href="{{ url_for('feature4.static', filename='css/feature4.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌿 Plant Nursery Finder</h1>
+            <p>Find the best plant nurseries near you</p>
+        </header>
+
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="location" placeholder="Enter your location...">
+                <button onclick="searchNurseries()">Search</button>
+            </div>
+        </div>
+
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Finding nurseries near you...</p>
+        </div>
+
+        <div id="results" class="results-container"></div>
+    </div>
+
+    <script src="{{ url_for('feature4.static', filename='js/feature4.js') }}"></script>
+</body>
+</html> 
